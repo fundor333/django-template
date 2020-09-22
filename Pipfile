@@ -1,0 +1,27 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+pylint = "*"
+autopep8 = "*"
+rope = "*"
+safety = "*"
+pylint-django = "*"
+flake8 = "*"
+black ="*"
+pre-commit= "*"
+
+[packages]
+django = "==3.1.*"
+gunicorn = "==20.0.*"
+psycopg2 = "==2.8.*"
+django-filter = "==2.3.*"
+django-guardian = "==2.3.*"
+
+[requires]
+python_version = "3.8"
+
+[pipenv]
+allow_prereleases = true
