@@ -33,4 +33,4 @@ start: install migrate run ## Install requirements, apply migrations, then start
 
 .PHONY: check
 check: ## Run checks on the packages
-	pipenv run skjold -v audit Pipenv.lock
+	pipenv run skjold -v audit Pipfile.lock
