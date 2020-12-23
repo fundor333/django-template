@@ -18,15 +18,20 @@ install: env ## Make venv and install requirements
 	pre-commit autoupdate
 
 migrate: ## Make and run migrations
-	$(PYTHON) manage.py makemigrations
-	$(PYTHON) manage.py migrate
+	pipenv run manage.py makemigrations
+	pipenv run manage.py migrate
 
 .PHONY: test
 test: ## Run tests
-	$(PYTHON) $(APP_DIR)/manage.py test application --verbosity=0 --parallel --failfast
+	pipenv run skjold -v audit Pipenv.lock
+	pipenv run python manage.py test application --verbosity=0 --parallel --failfast
 
 .PHONY: run
 run: ## Run the Django server
-	$(PYTHON) $(APP_DIR)/manage.py runserver
+	pipenv run python manage.py runserver
 
 start: install migrate run ## Install requirements, apply migrations, then start development server
+
+.PHONY: check
+check: ## Run checks on the packages
+	pipenv run skjold -v audit Pipenv.lock

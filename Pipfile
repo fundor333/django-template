@@ -11,6 +11,7 @@ rope = "*"
 safety = "*"
 flake8 = "*"
 pre-commit= "*"
+skjold = "*"
 
 [packages]
 django = ">=3.1.0"

@@ -1,4 +1,4 @@
-# https://editorconfig.org/
+# http://editorconfig.org
 
 root = true
 
@@ -12,7 +12,7 @@ charset = utf-8
 
 # Docstrings and comments use max_line_length = 79
 [*.py]
-max_line_length = 119
+max_line_length = 80
 
 # Use 2 spaces for the HTML files
 [*.html]
@@ -21,16 +21,16 @@ indent_size = 2
 # The JSON files contain newlines inconsistently
 [*.json]
 indent_size = 2
-insert_final_newline = ignore
+insert_final_newline = unset
 
 [**/admin/js/vendor/**]
-indent_style = ignore
-indent_size = ignore
+indent_style = unset
+indent_size = unset
 
 # Minified JavaScript files shouldn't be changed
 [**.min.js]
-indent_style = ignore
-insert_final_newline = ignore
+indent_style = unset
+insert_final_newline = unset
 
 # Makefiles always use tabs for indentation
 [Makefile]
@@ -38,10 +38,4 @@ indent_style = tab
 
 # Batch files use tabs for indentation
 [*.bat]
-indent_style = tab
-
-[docs/**.txt]
-max_line_length = 79
-
-[makefile]
 indent_style = tab
