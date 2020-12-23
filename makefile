@@ -22,7 +22,7 @@ migrate: ## Make and run migrations
 
 .PHONY: test
 test: ## Run tests
-	pipenv run skjold -v audit Pipenv.lock
+	pipenv run skjold -v audit Pipfile.lock
 	pipenv run python manage.py test application --verbosity=0 --parallel --failfast
 
 .PHONY: run
