@@ -8,8 +8,7 @@ help: ## Show this help
 
 .PHONY: env
 env:  ## Install pipenv
-	pip3 install pipenv
-	pipenv shell --python 3.8
+	pipenv shell --python 3.9
 
 .PHONY: install
 install: env ## Make venv and install requirements
