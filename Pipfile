@@ -6,9 +6,6 @@ verify_ssl = true
 [dev-packages]
 pylint = "*"
 pylint-django = "*"
-autopep8 = "*"
-rope = "*"
-safety = "*"
 flake8 = "*"
 pre-commit= "*"
 skjold = "*"
@@ -22,6 +19,3 @@ django-guardian = ">=2.3.0"
 
 [requires]
 python_version = "3.9"
-
-[pipenv]
-allow_prereleases = true
