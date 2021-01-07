@@ -23,10 +23,15 @@ migrate: ## Make and run migrations
 
 .PHONY: test
 test: ## Run tests
-	pipenv run python manage.py test application --verbosity=0 --parallel --failfast
+	pipenv run skjold -v audit Pipfile.lock
+	pipenv run python manage.py test --verbosity=0 --parallel --failfast
 
 .PHONY: run
 run: ## Run the Django server
 	pipenv run python manage.py runserver
 
 start: install migrate run ## Install requirements, apply migrations, then start development server
+
+.PHONY: check
+check: ## Run checks on the packages
+	pipenv run skjold -v audit Pipfile.lock
