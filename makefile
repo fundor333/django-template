@@ -19,6 +19,7 @@ install: env ## Make venv and install requirements
 migrate: ## Make and run migrations
 	pipenv run python manage.py makemigrations
 	pipenv run python manage.py migrate
+	pipenv run python manage.py collectstatic --noinput
 
 .PHONY: test
 test: ## Run tests
