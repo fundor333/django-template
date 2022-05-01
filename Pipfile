@@ -11,7 +11,7 @@ pre-commit= "*"
 skjold = "*"
 
 [packages]
-django = ">=3.2.4"
+django = ">=4.0.4"
 gunicorn = ">=20.1.0"
 psycopg2 = ">=2.8.6"
 django-filter = ">=2.4.0"
