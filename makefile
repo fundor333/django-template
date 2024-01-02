@@ -9,27 +9,23 @@ help: ## Show this help
 
 .PHONY: install
 install: ## Make venv and install requirements
-	@pipenv lock
-	@pipenv install --dev
-	@pipenv run pre-commit install
+	@poetry lock
+	@poetry install
+	@poetry run pre-commit install
 	@pre-commit autoupdate
 
 migrate: ## Make and run migrations
-	@pipenv run python manage.py makemigrations
-	@pipenv run python manage.py migrate
-	@pipenv run python manage.py collectstatic --noinput
+	@poetry run python manage.py makemigrations
+	@poetry run python manage.py migrate
+	@poetry run python manage.py collectstatic --noinput
 
 .PHONY: test
 test: ## Run tests
-	@pipenv run skjold -v audit Pipfile.lock
-	@pipenv run python manage.py test --verbosity=0 --parallel --failfast
+	@poetry run skjold -v audit Pipfile.lock
+	@poetry run python manage.py test --verbosity=0 --parallel --failfast
 
 .PHONY: run
 run: ## Run the Django server
-	@pipenv run python manage.py runserver
+	@poetry run python manage.py runserver
 
 start: install migrate run ## Install requirements, apply migrations, then start development server
-
-.PHONY: check
-check: ## Run checks on the packages
-	@pipenv run skjold -v audit Pipfile.lock

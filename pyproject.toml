@@ -15,9 +15,23 @@ exclude = '''
 )/
 '''
 
-[tool.skjold]
-sources = ["github", "pyup", "gemnasium"]  # Sources to check against.
-report_only = true                         # Report only, always exit with zero.
-cache_dir = '.skylt_cache'                 # Cache location (default: `~/.skjold/cache`).
-cache_expires = 86400                      # Cache max. age.
-verbose = true                             # Be verbose.
+[tool.flake8]
+# Check that this is aligned with your other tools like Black
+max-line-length = 120
+max-complexity = 18
+exclude = [".git", "*migrations*", ".tox", ".venv"]
+# Use extend-ignore to add to already ignored checks which are anti-patterns like W503.
+extend-ignore = ["E501", "W503", "F403", "C901", "B904"]
+
+
+[tool.poetry.dependencies]
+python = "^3.12"
+django = "*"
+
+[tool.poetry.group.dev.dependencies]
+pylint = "*"
+pylint-django = "*"
+flake8 = "*"
+pre-commit = "*"
+skjold = "*"
+flake8-pyproject = "*"
