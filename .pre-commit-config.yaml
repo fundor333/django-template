@@ -1,16 +1,16 @@
 fail_fast: true
 repos:
     -   repo: https://github.com/asottile/reorder_python_imports
-        rev: v3.1.0
+        rev: v3.12.0
         hooks:
             -   id: reorder-python-imports
     -   repo: https://github.com/psf/black
-        rev: 22.3.0
+        rev: 23.12.1
         hooks:
             - id: black
               language_version: python3.9
     -   repo: https://github.com/pre-commit/pre-commit-hooks
-        rev: v4.1.0
+        rev: v4.5.0
         hooks:
             -   id: check-merge-conflict
             -   id: detect-private-key
@@ -23,21 +23,21 @@ repos:
             -   id: trailing-whitespace
                 language: python
     -   repo: https://github.com/pre-commit/pygrep-hooks
-        rev: v1.9.0 # Use the ref you want to point at
+        rev: v1.10.0 # Use the ref you want to point at
         hooks:
             -   id: python-no-eval
             -   id: python-no-log-warn
             -   id: python-use-type-annotations
     -   repo: https://github.com/asottile/pyupgrade
-        rev: v2.31.1
+        rev: v3.15.0
         hooks:
             -   id: pyupgrade
                 args: [ --py311-plus ]
-    -   repo: https://gitlab.com/pycqa/flake8
-        rev: 3.9.2
-        hooks:
-            -   id: flake8
     -   repo: https://github.com/pre-commit/mirrors-scss-lint
-        rev: v0.59.0
+        rev: v0.60.0
         hooks:
             -   id: scss-lint
+    -   repo: https://github.com/pycqa/flake8
+        rev: '6.0.0'  # pick a git hash / tag to point to
+        hooks:
+        -   id: flake8
