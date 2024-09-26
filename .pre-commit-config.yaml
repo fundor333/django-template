@@ -1,5 +1,10 @@
 fail_fast: true
 repos:
+    -   repo: https://github.com/adamchainz/djade-pre-commit
+        rev: "1.0.0"  # Replace with the latest tag on GitHub
+        hooks:
+        -   id: djade
+            args: [--target-version, "4.2"]  # Replace with Django version
     -   repo: https://github.com/asottile/reorder_python_imports
         rev: v3.12.0
         hooks:
