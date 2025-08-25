@@ -1,6 +1,5 @@
 SHELL := /bin/bash
 
-include .env
 
 .PHONY: help
 help: ## Show this help
@@ -9,23 +8,28 @@ help: ## Show this help
 
 .PHONY: install
 install: ## Make venv and install requirements
-	@poetry lock
-	@poetry install
-	@poetry run pre-commit install
+	@uv sync
+	@uv run --env-file=.env  pre-commit install
 	@pre-commit autoupdate
 
 migrate: ## Make and run migrations
-	@poetry run python manage.py makemigrations
-	@poetry run python manage.py migrate
-	@poetry run python manage.py collectstatic --noinput
+	@uv run --env-file=.env  python manage.py makemigrations
+	@uv run --env-file=.env  python manage.py migrate
+	@uv run --env-file=.env  python manage.py collectstatic --noinput
 
 .PHONY: test
 test: ## Run tests
-	@poetry run skjold -v audit Pipfile.lock
-	@poetry run python manage.py test --verbosity=0 --parallel --failfast
+	@uv run --env-file=.env  skjold -v audit uv.lock
+	@uv run --env-file=.env  python manage.py test --verbosity=0 --parallel --failfast
 
 .PHONY: run
 run: ## Run the Django server
-	@poetry run python manage.py runserver
+	@uv run --env-file=.env  python manage.py runserver
 
 start: install migrate run ## Install requirements, apply migrations, then start development server
+
+precommit: ## Run pre-commit hooks
+	@git add . & uv run --env-file=.env pre-commit run --all-files
+
+deploy: ## make the deploy code
+	@uv export --no-hashes --format requirements-txt > requirements.txt

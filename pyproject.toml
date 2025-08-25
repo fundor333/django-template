@@ -1,3 +1,21 @@
+[project]
+name = "django-template"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = ["django>=5.2.5"]
+
+
+[dependency-groups]
+dev = [
+    "pre-commit>=4.3.0",
+    "pylint>=3.3.8",
+    "pylint-django>=2.6.1",
+    "pytest>=8.4.1",
+]
+
+
 [tool.black]
 line-length = 79
 include = '\.pyi?$'
@@ -15,23 +33,37 @@ exclude = '''
 )/
 '''
 
+[tool.isort]
+profile = "black"
+
+[tool.skjold]
+sources = ["pyup", "gemnasium"] # Sources to check against.
+report_only = true              # Report only, always exit with zero.
+cache_dir = '.skylt_cache'      # Cache location (default: `~/.skjold/cache`).
+cache_expires = 86400           # Cache max. age.
+verbose = true                  # Be verbose.
+
+[tool.ruff]
+# Set the maximum line length to 79.
+line-length = 79
+
+[tool.ruff.lint]
+# Add the `line-too-long` rule to the enforced rule set. By default, Ruff omits rules that
+# overlap with the use of a formatter, like Black, but we can override this behavior by
+# explicitly adding the rule.
+extend-select = [
+    "E501",
+    "UP",   # pyupgrade
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+
 [tool.flake8]
 # Check that this is aligned with your other tools like Black
 max-line-length = 120
 max-complexity = 18
-exclude = [".git", "*migrations*", ".tox", ".venv"]
+exclude = [".git", "*migrations*", ".tox", ".venv", ".env"]
 # Use extend-ignore to add to already ignored checks which are anti-patterns like W503.
 extend-ignore = ["E501", "W503", "F403", "C901", "B904"]
-
-
-[tool.poetry.dependencies]
-python = "^3.12"
-django = "*"
-
-[tool.poetry.group.dev.dependencies]
-pylint = "*"
-pylint-django = "*"
-flake8 = "*"
-pre-commit = "*"
-skjold = "*"
-flake8-pyproject = "*"
